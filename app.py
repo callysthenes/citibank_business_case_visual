@@ -119,10 +119,9 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets, suppress_ca
 server = app.server
 
 colors = {
-    'background': '#111111',
+    'background': '#00bfff',
     'text': '#7FDBFF'
 }
-
 
 df7 = df.groupby(['category', 'customer_country'])['amount'].sum().reset_index(name ='Total_amount')
 
