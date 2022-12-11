@@ -119,7 +119,7 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets, suppress_ca
 server = app.server
 
 colors = {
-    'background': '#00bfff',
+    'background': '#fdfff5',
     'text': '#7FDBFF'
 }
 
