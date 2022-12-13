@@ -108,20 +108,15 @@ df5 = df.merge(country_code, left_on="customer_country", right_on="alpha-2").gro
 
 df_new = df3.merge(df4, on=['customer_country', "alpha-3", "Country_Name"]).merge(df5, on=['customer_country', "alpha-3", "Country_Name"])
 
-#df['Country_Name'] = df['Country_Name'].apply(lambda x: str(x).split(',')[0])
-
-# # Optional:
-# # change United Kingdom of Great Britain & Northern Ireland to United Kingdom
-# df['Country_Name'] = df['Country_Name'].apply(lambda x: 'United Kingdom' if x == 'United Kingdom of Great Britain & Northern Ireland' else x)
-
 external_stylesheets = ['https://codepen.io/chriddyp/pen/bWLwgP.css']
 app = dash.Dash(__name__, external_stylesheets=external_stylesheets, suppress_callback_exceptions=True)
 server = app.server
 
 colors = {
-    'background': '#fdfff5',
-    'text': '#7FDBFF'
+    'background': '#FFFFFF',
+    'text': '#FFFFFF'
 }
+
 
 df7 = df.groupby(['category', 'customer_country'])['amount'].sum().reset_index(name ='Total_amount')
 
@@ -142,13 +137,13 @@ def range_slider(id, min, max, step, value, is_vertical=False):
 
 app.layout = html.Div(className='main',
 style={'backgroundColor': colors['background']}, children=[
-    html.H1('Citibank Credit Card Intelligence: Group A', style={'textAlign':'center'}),
+    html.H1('Citibank Credit Card Intelligence: Group A', style={'textAlign':'center', 'color': colors['text']}),
     dcc.Tabs([
       dcc.Tab(label='Credit Card KPIs', children=[
             html.Div([
               html.Div([
                 html.Div([ 
-                  html.Label('Top Countries'),
+                  html.Label('Top Countries', style={'color': colors['text']}),
                   dcc.Slider(
                       id='countries-slider',
                       min=1,
@@ -167,7 +162,7 @@ style={'backgroundColor': colors['background']}, children=[
             html.Div(
               className= 'three columns',
               children=[
-                html.Label('Choose a metric:', style={'font-size': '20px', 'font-weight': 700, 'margin-top': '-10px'}),
+                html.Label('Choose a metric:', style={'font-size': '20px', 'font-weight': 700, 'margin-top': '-10px', 'color': colors['text']}),
                 dcc.Dropdown(
                   id='interest-variable',
                   options=[{'label':'Total Expenditure', 'value':'Total_Expenditure'},
@@ -231,8 +226,13 @@ style={'backgroundColor': colors['background']}, children=[
               className= 'three columns',
               children=[
                 #html.Label('Space for Text', style={'font-size': '15px', 'font-weight': 700, 'margin-left': '10px'}),
-                dcc.Textarea(
-                  style={'width': '100%', 'height': 600, 'margin-left': '10px', 'margin-right': '0px'},
+                html.P(
+                  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's \
+                    standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make \
+                      a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, \
+                        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages\
+                          , and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                  style={'width': '100%', 'height': 600, 'margin-left': '10px', 'margin-right': '0px', 'color': colors['text']},
                 ),
               ]
             ),
@@ -272,7 +272,7 @@ style={'backgroundColor': colors['background']}, children=[
         html.Div([
           html.Div( className= 'row',
             children=[ 
-              html.Label('Top Countries'),
+              html.Label('Top Countries', style={'color': colors['text']}),
               dcc.Slider(
                   id='countries-slider4',
                   min=1,
@@ -290,7 +290,7 @@ style={'backgroundColor': colors['background']}, children=[
           html.Div(
             className='three columns',
             children=[
-                html.Label('Choose a metric:', style={'font-size': '20px', 'font-weight': 700, 'margin-top': '-10px'}),
+                html.Label('Choose a metric:', style={'font-size': '20px', 'font-weight': 700, 'margin-top': '-10px', 'color': colors['text']}),
                 dcc.Dropdown(
                   id='dropdown-page2',
                   options=[{'label':'Total Expenditure', 'value':'Total_Expenditure'},
@@ -301,8 +301,13 @@ style={'backgroundColor': colors['background']}, children=[
                   clearable=False,
                   #style={'padding-top': '8px'}
                 ),
-                dcc.Textarea(
-                  style={'width': '100%', 'height': 850, 'margin-left': '0px', 'margin-right': '-10px', 'margin-top': '8%'},
+                html.P(
+                  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's \
+                    standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make \
+                      a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, \
+                        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages\
+                          , and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                  style={'width': '100%', 'height': 850, 'margin-left': '0px', 'margin-right': '-10px', 'margin-top': '8%', 'color': colors['text']},
                 ),
           ],style={'padding-left': '10px', 'height': '60px', 'center': 'true', 'margin-bottom': '3%', 'padding-right': '0%', 'margin-top': '1%'}),
           html.Div(
@@ -644,11 +649,21 @@ def update_scatter_plot(value):
                         range_slider('countries-slider3', 0, max(df_new['Total_Transactions']) + 10, 10, [0, 500])
                       ,], style={'margin-right':'5%', 'padding-bottom':'40px', 'margin-top':'2%'}
                     ),
-                    dcc.Textarea(
-                    style={'width': '100%', 'height': 120, 'margin-bottom:':'3rem'},
+                    html.P(
+                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's \
+                    standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make \
+                      a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, \
+                        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages\
+                          , and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                    style={'width': '100%', 'height': 120, 'margin-bottom:':'3rem', 'color': colors['text']},
                     ),
-                    dcc.Textarea(
-                    style={'width': '100%', 'height': 100, 'margin-bottom:':'3rem'},
+                    html.P(
+                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's \
+                    standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make \
+                      a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, \
+                        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages\
+                          , and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                    style={'width': '100%', 'height': 100, 'margin-bottom:':'3rem', 'color': colors['text']},
                     ),
                   ],
                   style={'margin-left':'0', 'margin-bottom':'3%', 'margin-top':'3%'}
@@ -678,11 +693,21 @@ def update_scatter_plot(value):
                         range_slider('countries-slider3', 0, max(df_new['Total_Transactions']) + 10, 1, [0, max(df_new['Total_Transactions']) + 10])
                       ,], style={'margin-right':'5%', 'padding-bottom':'40px', 'margin-top':'2%'}
                     ),
-                    dcc.Textarea(
-                    style={'width': '100%', 'height': 120, 'margin-bottom:':'3rem'},
+                    html.P(
+                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's \
+                    standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make \
+                      a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, \
+                        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages\
+                          , and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                    style={'width': '100%', 'height': 120, 'margin-bottom:':'3rem', 'color': colors['text']},
                     ),
-                    dcc.Textarea(
-                    style={'width': '100%', 'height': 100, 'margin-bottom:':'3rem'},
+                    html.P(
+                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's \
+                    standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make \
+                      a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, \
+                        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages\
+                          , and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
+                    style={'width': '100%', 'height': 100, 'margin-bottom:':'3rem', 'color': colors['text']},
                     ),
                   ],
                   style={'margin-left':'0', 'margin-bottom':'3%', 'margin-top':'3%'}
