@@ -586,9 +586,9 @@ def draw_sankey(value, slider):
     all = genSankey(df_category_datetime,cat_cols=['category','daytime'],value_cols='Total_amount',title='Merchant Transactions')
 
     sankey = []
-    df_category = df['category'].unique().tolist()
+    df_category = df['customer_country'].unique().tolist()
     for category in df_category:
-        sankey.append(genSankey(df_category_datetime[df_category_datetime['category']==category],cat_cols=['category','daytime'],value_cols='Total_amount',title='Merchant Transactions'))
+        sankey.append(genSankey(df_category_datetime[df_category_datetime['category']==category],cat_cols=['category','daytime'],value_cols='Total_amount',title='Merchant Transactions per Daytime'))
 
     buttons = []
     # appending all then the rest
@@ -610,7 +610,7 @@ def draw_sankey(value, slider):
 
 
     # update layout with buttons, and show the figure
-    sank = genSankey(df_category_datetime, cat_cols=['category','daytime'],value_cols='Total_amount',title='Merchant Transactions')
+    sank = genSankey(df_category_datetime, cat_cols=['category','daytime'],value_cols='Total_amount',title='Merchant Transactions per Daytime')
     fig = go.Figure(sank)
     fig.update_layout(updatemenus=updatemenus)
     #iplot(fig)
