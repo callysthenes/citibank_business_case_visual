@@ -113,8 +113,8 @@ app = dash.Dash(__name__, external_stylesheets=external_stylesheets, suppress_ca
 server = app.server
 
 colors = {
-    'background': '#FFFFFF',
-    'text': '#FFFFFF'
+    'background': '#E0E5EB',
+    'text': '#81848A'
 }
 
 
@@ -402,7 +402,7 @@ def update_world_map(value = 'Total_Expenditure', slider = 10):
                     hover_name="Country_Name", # column to add to hover information
                     color_continuous_scale=px.colors.sequential.Plasma_r[::-1],
                     title=f"{value} by Country of Origin",
-                    width=1100,
+                    width=1000,
                     height=600,
                     )
   return fig
