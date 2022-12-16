@@ -15,7 +15,7 @@ from plotly.subplots import make_subplots
 # Returns data and layout as dictionary
 def genSankey(df,cat_cols=[],value_cols='',title='Sankey Diagram'):
     # maximum of 6 value cols -> 6 colors
-    colorPalette = ['#4B8BBE','#306998','#FFE873','#FFD43B','#646464']
+    colorPalette = ['#4B8BBE','#FFE873','#FFD43B','#646464']
     labelList = []
     colorNumList = []
     for catCol in cat_cols:
@@ -571,25 +571,25 @@ def draw_sankey(value, slider):
     if value == 'Total_Expenditure':
         df_country = df.groupby(['customer_country'])['amount'].sum().reset_index(name ='Total_amount').sort_values(by=['Total_amount'], ascending=False)
         data = df[df['customer_country'].isin(df_country['customer_country'].head(slider))]
-        df_category_datetime = data.groupby(['category', 'daytime'])['amount'].sum().reset_index(name ='Total_amount').sort_values(by=['Total_amount'], ascending=False).reset_index(drop=True)
+        df_category_datetime = data.groupby(['customer_country','category', 'daytime'])['amount'].sum().reset_index(name ='Total_amount').sort_values(by=['Total_amount'], ascending=False).reset_index(drop=True)
 
     elif value == 'Total_Transactions':
         df_country = df.groupby(['customer_country'])['amount'].count().reset_index(name ='Total_amount').sort_values(by=['Total_amount'], ascending=False)
         data = df[df['customer_country'].isin(df_country['customer_country'].head(slider))]
-        df_category_datetime = data.groupby(['category', 'daytime'])['amount'].count().reset_index(name ='Total_amount').sort_values(by=['Total_amount'], ascending=False).reset_index(drop=True)
+        df_category_datetime = data.groupby(['customer_country','category', 'daytime'])['amount'].count().reset_index(name ='Total_amount').sort_values(by=['Total_amount'], ascending=False).reset_index(drop=True)
         
     
     elif value == 'Avg_Ticket':
         df_country = df.groupby(['customer_country'])['amount'].mean().reset_index(name ='Total_amount').sort_values(by=['Total_amount'], ascending=False)
         data = df[df['customer_country'].isin(df_country['customer_country'].head(slider))]
-        df_category_datetime = data.groupby(['category', 'daytime'])['amount'].mean().reset_index(name ='Total_amount').sort_values(by=['Total_amount'], ascending=False).reset_index(drop=True)
+        df_category_datetime = data.groupby(['customer_country','category', 'daytime'])['amount'].mean().reset_index(name ='Total_amount').sort_values(by=['Total_amount'], ascending=False).reset_index(drop=True)
         
     all = genSankey(df_category_datetime,cat_cols=['category','daytime'],value_cols='Total_amount',title='Merchant Transactions')
 
     sankey = []
     df_country_1= df['customer_country'].unique().tolist()
     for country in df_country_1:
-        sankey.append(genSankey(df_category_datetime[df_category_datetime['category']==country],cat_cols=['category','daytime'],value_cols='Total_amount',title='Merchant Transactions per Daytime'))
+        sankey.append(genSankey(df_category_datetime[df_category_datetime['customer_country']==country],cat_cols=['category','daytime'],value_cols='Total_amount',title='Merchant Transactions per Daytime'))
 
     buttons = []
     # appending all then the rest
