@@ -114,7 +114,7 @@ server = app.server
 
 colors = {
     'background': '#E0E5EB',
-    'text': '#81848A'
+    'text': '#000000'
 }
 
 
@@ -227,12 +227,12 @@ style={'backgroundColor': colors['background']}, children=[
               children=[
                 #html.Label('Space for Text', style={'font-size': '15px', 'font-weight': 700, 'margin-left': '10px'}),
                 html.P(
-                  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's \
-                    standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make \
-                      a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, \
-                        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages\
-                          , and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                  style={'width': '100%', 'height': 600, 'margin-left': '10px', 'margin-right': '0px', 'color': colors['text']},
+                  "Citibank credit cardholders of 110 nationalities visited the city of Madrid and performed transactions for a total of $1.1M \
+                     Out of those 110 nationalities, 20% (24 countries), accounted for 80% of total expenditure."),
+                html.P(
+                  "Top 5 countries in terms of total expenditure (total sales volume) are: United States (US), \
+                    United Kingdom, China, Russia, and France. US is by far the nationality with the highest expenditure share, with 15% of total expenses",
+                #style={'width': '100%', 'height': 600, 'margin-left': '10px', 'margin-right': '0px', 'color': colors['text']},
                 ),
               ]
             ),
@@ -302,12 +302,13 @@ style={'backgroundColor': colors['background']}, children=[
                   #style={'padding-top': '8px'}
                 ),
                 html.P(
-                  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's \
-                    standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make \
-                      a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, \
-                        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages\
-                          , and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                  style={'width': '100%', 'height': 850, 'margin-left': '0px', 'margin-right': '-10px', 'margin-top': '8%', 'color': colors['text']},
+                  "The average visitor to Madrid during this period spent $129. We find particularly interesting the countries with \
+                    a high average ticket, most of them from the Asian pacific."),
+                html.P("VN (Vietnam) is the country with the highest average ticket, \
+                      at $500, 4 times higher than all up average ticket size, followed by TH (Thailand) at $408, SA (Saudi Arabia) at $395, ID (Indonesia) at $358 and finally AO (Angola) at $353"),
+                html.P("There is a concentration of activity around 3 PM in the afternoon where the number of transactions spikes significantly, \
+                          especially in Fashion and Shoes category. ",
+                #style={'width': '100%', 'height': 850, 'margin-left': '0px', 'margin-right': '-10px', 'margin-top': '8%', 'color': colors['text']},
                 ),
           ],style={'padding-left': '10px', 'height': '60px', 'center': 'true', 'margin-bottom': '3%', 'padding-right': '0%', 'margin-top': '1%'}),
           html.Div(
@@ -650,20 +651,25 @@ def update_scatter_plot(value):
                       ,], style={'margin-right':'5%', 'padding-bottom':'40px', 'margin-top':'2%'}
                     ),
                     html.P(
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's \
-                    standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make \
-                      a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, \
-                        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages\
-                          , and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                    style={'width': '100%', 'height': 120, 'margin-bottom:':'3rem', 'color': colors['text']},
+                      "Based on these observations, we propose the implementation of a simple segmentation technique, \
+                        leveraging the 2 KPIs already identified:"), 
+                    html.P("(i) Total No. Transactions (activeness) and" ),
+                    html.P("(ii) Total Expenditures (profitability)."),
+                    html.P("This is achieved by splitting the population in tiers, \
+                            based on whether they are above or below specific thresholds (75th and 25th Quantiles) of both KPIs."),
+                    html.P("In this way, Citibank can identify different customer profiles and target specific marketing campaigns, \
+                                increasing the number of “positive” outcomes and leveling up the affinity within customers. ",
+                    #style={'width': '100%', 'height': 120, 'margin-bottom:':'3rem', 'color': colors['text']},
                     ),
                     html.P(
-                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's \
-                    standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make \
-                      a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, \
-                        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages\
-                          , and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                    style={'width': '100%', 'height': 100, 'margin-bottom:':'3rem', 'color': colors['text']},
+                      "Tier 1: these cardholders belong to nationalities with low transaction activity (less than 6.5 transactions per month), \
+                        but where total expenses may range from very little to significantly large amounts."),
+                    html.P(
+                      "Tier 2: cardholders belonging to this tier have a moderate to high transaction activity \
+                          and their total expenditures ranges from low to moderate."),
+                     html.P(
+                       "Tier 3: these cardholders have a high level of transactions and a high expenditure; however, their average ticket is not necessarily high",
+                    #style={'width': '100%', 'height': 100, 'margin-bottom:':'3rem', 'color': colors['text']},
                     ),
                   ],
                   style={'margin-left':'0', 'margin-bottom':'3%', 'margin-top':'3%'}
@@ -694,21 +700,26 @@ def update_scatter_plot(value):
                       ,], style={'margin-right':'5%', 'padding-bottom':'40px', 'margin-top':'2%'}
                     ),
                     html.P(
-                      "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's \
-                    standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make \
-                      a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, \
-                        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages\
-                          , and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                    style={'width': '100%', 'height': 120, 'margin-bottom:':'3rem', 'color': colors['text']},
-                    ),
+                      "Based on these observations, we propose the implementation of a simple segmentation technique, \
+                        leveraging the 2 KPIs already identified:"), 
+                    html.P("(i) Total No. Transactions (activeness) and" ),
+                    html.P("(ii) Total Expenditures (profitability)."),
+                    html.P("This is achieved by splitting the population in tiers, \
+                            based on whether they are above or below specific thresholds (75th and 25th Quantiles) of both KPIs."),
+                    html.P("In this way, Citibank can identify different customer profiles and target specific marketing campaigns, \
+                                increasing the number of “positive” outcomes and leveling up the affinity within customers. ",
+                    #style={'width': '100%', 'height': 120, 'margin-bottom:':'3rem', 'color': colors['text']},
+                   ),
+                   html.P(
+                      "Tier 1: these cardholders belong to nationalities with low transaction activity (less than 6.5 transactions per month), \
+                        but where total expenses may range from very little to significantly large amounts."),
                     html.P(
-                    "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's \
-                    standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make \
-                      a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, \
-                        remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages\
-                          , and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum.",
-                    style={'width': '100%', 'height': 100, 'margin-bottom:':'3rem', 'color': colors['text']},
-                    ),
+                      "Tier 2: cardholders belonging to this tier have a moderate to high transaction activity \
+                          and their total expenditures ranges from low to moderate."),
+                     html.P(
+                       "Tier 3: these cardholders have a high level of transactions and a high expenditure; however, their average ticket is not necessarily high",
+                    #style={'width': '100%', 'height': 100, 'margin-bottom:':'3rem', 'color': colors['text']},
+                        ),
                   ],
                   style={'margin-left':'0', 'margin-bottom':'3%', 'margin-top':'3%'}
                 )
@@ -749,7 +760,7 @@ def update_scatter_plot(value = 'plot1', slider1 = [0, 10], slider2 = [0, 10]):
     ]
 
     # create a list of the values we want to assign for each condition
-    values = ['Tier 3', 'Tier 2', 'Tier 1']
+    values = ['Tier 1', 'Tier 2', 'Tier 3']
     df_new['Tier'] = np.select(conditions, values)
 
     data = df_new [(df_new['Total_Transactions'] >= slider2[0]) & (df_new['Total_Transactions'] <= slider2[1])
