@@ -786,3 +786,5 @@ def update_scatter_plot(value = 'plot1', slider1 = [0, 10], slider2 = [0, 10]):
 
 if __name__ == '__main__':
     app.run_server(debug=True, port=8051)
+    
+    
