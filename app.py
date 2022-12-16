@@ -587,9 +587,9 @@ def draw_sankey(value, slider):
     all = genSankey(df_category_datetime,cat_cols=['category','daytime'],value_cols='Total_amount',title='Merchant Transactions')
 
     sankey = []
-    df_category = df['customer_country'].unique().tolist()
-    for category in df_category:
-        sankey.append(genSankey(df_category_datetime[df_category_datetime['category']==category],cat_cols=['category','daytime'],value_cols='Total_amount',title='Merchant Transactions per Daytime'))
+    df_country = df['customer_country'].unique().tolist()
+    for category in df_country:
+        sankey.append(genSankey(df_category_datetime[df_country['customer_country']==df_country],cat_cols=['category','daytime'],value_cols='Total_amount',title='Merchant Transactions per Daytime'))
 
     buttons = []
     # appending all then the rest
@@ -603,7 +603,7 @@ def draw_sankey(value, slider):
         buttons.append(
         dict(
             args = [sankey[i]],
-            label = df_category[i],
+            label = df_country[i],
             method = 'animate'
         ))
 
